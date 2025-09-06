@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend2
+      dockerfile: Dockerfile
+    image: deshan976/gscomp325:latest
+    ports:
+      - "5001:5000"   # map host 5001 → container 5000
+      # backend API port
+
+  frontend:
+    image: nginx:alpine
+    volumes:
+      - ./frontend2:/usr/share/nginx/html:ro   # serve static frontend
+    ports:
+      - "3000:80"         # maps host 3000 to container 80
